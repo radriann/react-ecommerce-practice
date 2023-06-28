@@ -1,4 +1,5 @@
 import { chakra, Box, Heading } from '@chakra-ui/react'
+import { Cart } from '../Cart'
 
 export const NavbarContainer = () => {
   return (
@@ -18,6 +19,9 @@ export const NavbarContainer = () => {
           Ecommerce
         </Heading>
       </Box>
+
+      <Cart />
+
     </chakra.header>
   )
 }

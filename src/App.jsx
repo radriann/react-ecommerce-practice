@@ -4,6 +4,7 @@ import { Products } from './components/products/Products'
 import { Filters } from './components/filters/Filters'
 import { products as initialProducts } from './mocks/products.json'
 import { useFilters } from './hooks/useFilters'
+import { CartContextProvider } from './context/cart'
 
 function App () {
   const { filterProducts } = useFilters()
@@ -14,9 +15,11 @@ function App () {
       maxW='100vw'
       minH='100vh'
     >
-      <NavbarContainer />
-      <Filters />
-      <Products products={filteredProducts} />
+      <CartContextProvider>
+        <NavbarContainer />
+        <Filters />
+        <Products products={filteredProducts} />
+      </CartContextProvider>
     </chakra.main>
   )
 }
