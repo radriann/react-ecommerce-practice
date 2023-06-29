@@ -6,6 +6,14 @@ export const SelectFilter = () => {
   const { setFilters } = useContext(FiltersContext)
 
   const handleCategoryChange = (e) => {
+    if (e.target.value === '') {
+      setFilters(prevState => ({
+        ...prevState,
+        category: 'all'
+      }))
+      return
+    }
+
     setFilters(prevState => ({
       ...prevState,
       category: e.target.value
