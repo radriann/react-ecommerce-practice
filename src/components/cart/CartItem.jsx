@@ -9,6 +9,7 @@ export const CartItem = ({ thumbnail, price, title, quantity, addToCart }) => {
       bgColor='gray.600'
       px='1rem'
       borderRadius='6px'
+      my='1rem'
     >
       <Image w='120px' src={thumbnail} />
       <Box>

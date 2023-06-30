@@ -9,8 +9,10 @@ export const Filters = () => {
       w='80%'
       mx='auto'
       my='3rem'
-      align='center'
+      align={{ base: 'left', md: 'center' }}
       justify='space-between'
+      direction={{ base: 'column', md: 'row' }}
+      gridGap={{ base: '1rem', md: '0' }}
     >
       <RangeFilter />
       <SelectFilter />

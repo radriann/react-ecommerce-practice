@@ -10,11 +10,11 @@ export const NavbarContainer = () => {
       alignItems='center'
       justifyContent='space-between'
       py='2rem'
-      px='2rem'
+      px={{ base: '1rem', md: '2rem' }}
       bg='blue.800'
     >
       <Box>
-        <Heading fontSize='28px'>
+        <Heading fontSize={{ base: '22px', md: '28px' }}>
           <chakra.span color='blue.500'>
             React {' '}
           </chakra.span>

@@ -22,11 +22,10 @@ export const SelectFilter = () => {
 
   return (
     <Select
-      placeholder='Select...'
-      w='30%'
+      placeholder='All'
+      w='25%'
       onChange={handleCategoryChange}
     >
-      <option value='all'>All</option>
       <option value='laptops'>Laptops</option>
       <option value='smartphones'>Smartphones</option>
     </Select>

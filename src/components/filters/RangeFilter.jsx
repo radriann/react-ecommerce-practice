@@ -1,46 +1,51 @@
-import { useContext, useState } from 'react'
-import {
-  RangeSlider,
-  RangeSliderTrack,
-  RangeSliderFilledTrack,
-  RangeSliderThumb,
-  Box,
-  Text
-} from '@chakra-ui/react'
+import { useContext, useId } from 'react'
+import { chakra } from '@chakra-ui/react'
 import { FiltersContext } from '../../context/filters'
 
 export const RangeFilter = () => {
-  const { setFilters } = useContext(FiltersContext)
-  const [rangeValue, setRangeValue] = useState([120, 230])
+  const { setFilters, filters } = useContext(FiltersContext)
 
-  const handleRangeChange = (val) => {
-    setRangeValue(val)
+  const minPriceFilterId = useId()
+
+  const handleChangeMinPrice = (event) => {
     setFilters(prevState => ({
       ...prevState,
-      minPrice: val[0]
+      minPrice: event.target.value
     }))
   }
 
   return (
-    <Box
-      w='50%'
-      display='flex'
-      gap='20px'
-    >
-      <RangeSlider
-        defaultValue={[120, 230]}
-        min={0}
-        max={1000}
-        step={30}
-        onChangeEnd={handleRangeChange}
-      >
-        <RangeSliderTrack bg='red.100'>
-          <RangeSliderFilledTrack />
-        </RangeSliderTrack>
-        <RangeSliderThumb boxSize={6} index={0} />
-        <RangeSliderThumb boxSize={6} index={1} />
-      </RangeSlider>
-      <Text w='30%'>{rangeValue[0]}$ - {rangeValue[1]}$</Text>
-    </Box>
+    <chakra.div>
+      <chakra.label htmlFor={minPriceFilterId} mr='.5rem'>Price:</chakra.label>
+      <chakra.input
+        w='50%'
+        id={minPriceFilterId}
+        type='range'
+        min='0'
+        max='1000'
+        onChange={handleChangeMinPrice}
+        value={filters.minPrice}
+        borderRadius='base'
+        h='8px'
+        bg='gray.200'
+        appearance='none'
+        outline='none'
+        opacity='0.7'
+        _hover={{ opacity: '1' }}
+        _focus={{ boxShadow: 'outline' }}
+        _disabled={{ opacity: '0.4', cursor: 'not-allowed' }}
+        css={{
+          '&::-webkit-slider-thumb': {
+            appearance: 'none',
+            width: '16px',
+            height: '16px',
+            borderRadius: '100%',
+            background: '#5481eb',
+            cursor: 'pointer'
+          }
+        }}
+      />
+      <chakra.span mx='1rem'>${filters.minPrice}</chakra.span>
+    </chakra.div>
   )
 }
